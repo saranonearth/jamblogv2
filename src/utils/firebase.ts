@@ -1,7 +1,7 @@
 import * as firebase from "firebase/app";
 import config from "./config.json";
 import "firebase/database";
-
+import "firebase/auth";
 const firebaseConfig = {
   apiKey: config.apiKey,
   authDomain: config.authDomain,
@@ -16,5 +16,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
-
-export { db };
+const auth = firebase.auth();
+export { db, auth };
