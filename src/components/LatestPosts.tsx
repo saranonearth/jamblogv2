@@ -1,4 +1,5 @@
 import React from "react";
+import ArticleCard from "./ArticleCard";
 
 interface Props {}
 
@@ -15,32 +16,7 @@ const LatestPosts: React.FC<Props> = () => {
           <div className="row blog-entries">
             <div className="col-md-12 col-lg-8 main-content">
               <div className="row">
-                <div className="col-md-6">
-                  <a href="blog-single.html" className="blog-entry ">
-                    <img
-                      src="https://via.placeholder.com/800x534"
-                      alt="Image placeholder"
-                    />
-                    <div className="blog-content-body">
-                      <div className="post-meta">
-                        <span className="author mr-2">
-                          <img
-                            src="https://via.placeholder.com/30"
-                            alt="Colorlib"
-                          />
-                        </span>
-                        <span className="mr-2">January 05, 2020 </span>
-                        <span className="ml-2">
-                          <span className="fa fa-comments">Likes</span> 3
-                        </span>
-                      </div>
-                      <h2>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Accusamus, quos!
-                      </h2>
-                    </div>
-                  </a>
-                </div>
+                <ArticleCard />
               </div>
               {/* <div className="sidebar-box search-form-wrap">
                 <form action="#" className="search-form">
