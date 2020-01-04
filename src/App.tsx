@@ -1,19 +1,20 @@
-import React, { useReducer, useContext } from "react";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
 import * as Firebase from "./utils/firebase";
-import Store from "./Store/Store";
-import Reducer from "./Store/Reducer";
-import { IStore } from "./Store/Store";
+import StoreProvider from "./Store/StoreProvider";
+import Home from "./components/Home";
 
 const App: React.FC = () => {
-  const initialState = useContext(Store);
-  const [state, dispatch] = useReducer(Reducer, initialState);
-
-  console.log(state);
-
   return (
-    <Store.Provider value={{ state, dispatch }}>
-      <div className="App"></div>
-    </Store.Provider>
+    <BrowserRouter>
+      <StoreProvider>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
+      </StoreProvider>
+    </BrowserRouter>
   );
 };
 
