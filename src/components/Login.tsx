@@ -2,28 +2,36 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { auth, firestore } from "../utils/firebase";
 import Store from "../Store/Store";
-
-interface Props {}
+import { RouteComponentProps } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+interface Props extends RouteComponentProps {}
 
 type FormData = {
   email: string;
   password: string;
 };
 
-const Login: React.FC<Props> = () => {
+const Login: React.FC<Props> = ({ history }) => {
   const { handleSubmit, register } = useForm<FormData>();
   const { state, dispatch } = useContext(Store);
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     try {
       const res = await auth.signInWithEmailAndPassword(email, password);
-      console.log(res);
+
       firestore
         .collection("users")
         .doc(res.user?.uid)
         .get()
         .then(doc => {
-          console.log(doc.data());
+          if (doc.data() === undefined) {
+            history.push("/onboard");
+          } else {
+            dispatch({
+              type: "LOGIN",
+              paylaod: res.user?.uid
+            });
+          }
         });
 
       dispatch({
@@ -35,6 +43,7 @@ const Login: React.FC<Props> = () => {
     }
   });
   console.log(state);
+  if (state.isAuth) return <Redirect to="/dashboard" />;
   return (
     <div>
       <div className="container">

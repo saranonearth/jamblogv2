@@ -16,8 +16,8 @@ import Onboard from "./components/Onboard";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Header />
       <StoreProvider>
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
@@ -28,8 +28,8 @@ const App: React.FC = () => {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/onboard" component={Onboard} />
         </Switch>
+        <Footer />
       </StoreProvider>
-      <Footer />
     </BrowserRouter>
   );
 };

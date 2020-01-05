@@ -2,6 +2,7 @@ import * as firebase from "firebase/app";
 import config from "./config.json";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/storage";
 const firebaseConfig = {
   apiKey: config.apiKey,
   authDomain: config.authDomain,

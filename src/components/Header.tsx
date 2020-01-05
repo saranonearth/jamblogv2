@@ -1,6 +1,10 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
+import Store from "../Store/Store";
+import { auth } from "../utils/firebase";
+
 const Header: React.FC = () => {
+  const { state, dispatch } = React.useContext(Store);
   return (
     <>
       <header role="banner">
@@ -59,11 +63,35 @@ const Header: React.FC = () => {
                 <li className="nav-item no-mobile ">
                   <p className="nav-link">|</p>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                </li>
+
+                {state.isAuth ? (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/dashboard">
+                        {state.user && state.user.name}
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <p
+                        className="nav-link"
+                        onClick={async () => {
+                          await auth.signOut();
+                          dispatch({
+                            type: "LOGOUT"
+                          });
+                        }}
+                      >
+                        Logout
+                      </p>
+                    </li>
+                  </>
+                ) : (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
