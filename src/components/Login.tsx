@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { auth, firestore } from "../utils/firebase";
+import Store from "../Store/Store";
+
 interface Props {}
 
 type FormData = {
@@ -9,10 +12,29 @@ type FormData = {
 
 const Login: React.FC<Props> = () => {
   const { handleSubmit, register } = useForm<FormData>();
+  const { state, dispatch } = useContext(Store);
 
-  const onSubmit = handleSubmit(({ email, password }) => {
-    console.log(email, password);
+  const onSubmit = handleSubmit(async ({ email, password }) => {
+    try {
+      const res = await auth.signInWithEmailAndPassword(email, password);
+      console.log(res);
+      firestore
+        .collection("users")
+        .doc(res.user?.uid)
+        .get()
+        .then(doc => {
+          console.log(doc.data());
+        });
+
+      dispatch({
+        type: "LOGIN",
+        payload: res.user?.uid
+      });
+    } catch (error) {
+      console.log(error);
+    }
   });
+  console.log(state);
   return (
     <div>
       <div className="container">

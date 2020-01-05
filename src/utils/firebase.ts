@@ -1,6 +1,6 @@
 import * as firebase from "firebase/app";
 import config from "./config.json";
-import "firebase/database";
+import "firebase/firestore";
 import "firebase/auth";
 const firebaseConfig = {
   apiKey: config.apiKey,
@@ -13,8 +13,8 @@ const firebaseConfig = {
   measurementId: config.measurementId
 };
 
-firebase.initializeApp(firebaseConfig);
+const Firebase = firebase.initializeApp(firebaseConfig);
 
-const db = firebase.database();
-const auth = firebase.auth();
-export { db, auth };
+const firestore = Firebase.firestore();
+const auth = Firebase.auth();
+export { firestore, auth, Firebase };

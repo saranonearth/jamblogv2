@@ -42,7 +42,7 @@ const Header: React.FC = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/contributor">
+                  <Link className="nav-link" to="/contributors">
                     Contributors
                   </Link>
                 </li>
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                     Contact
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item no-mobile ">
                   <p className="nav-link">|</p>
                 </li>
                 <li className="nav-item">

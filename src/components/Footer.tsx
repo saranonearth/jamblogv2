@@ -12,7 +12,7 @@ export default function App(props: IAppProps) {
               <h3>About Us</h3>
               <p className="mb-4">
                 <img
-                  src="images/img_1.jpg"
+                  src="https://via.placeholder.com/400x200"
                   alt="Image placeholder"
                   className="img-fluid"
                 />
