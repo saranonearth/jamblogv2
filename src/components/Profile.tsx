@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Store from "../Store/Store";
 import { useForm } from "react-hook-form";
 import { Firebase, firestore } from "../utils/firebase";
+import { stat } from "fs";
 
 type FormData = {
   name: any;
@@ -15,8 +16,8 @@ const Profile: React.FC = () => {
   const [previewImage, setimage] = useState<string | any>();
   const { handleSubmit, register } = useForm<FormData>({
     defaultValues: {
-      name: state.user.name,
-      bio: state.user.bio
+      name: state.user && state.user.name,
+      bio: state.user && state.user.bio
     }
   });
   const handleImageChange = (e: any) => {
@@ -80,6 +81,7 @@ const Profile: React.FC = () => {
   };
 
   console.log(state);
+  if (state.user === null) return <p>Loading...</p>;
   return (
     <div>
       <div className="container">

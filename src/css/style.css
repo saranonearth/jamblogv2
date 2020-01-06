@@ -285,12 +285,22 @@ header .navbar .dropdown-menu a {
   margin: auto;
 }
 
+.tox-statusbar__branding {
+  display: none !important;
+}
+
+
 .d-top-bar {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   width: 60%;
   margin: auto
+}
+
+.field {
+  width: 100%;
+  border: #6c757d 1px solid;
 }
 
 .d-top-bar>div {
