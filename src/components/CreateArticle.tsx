@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+import uuidv4 from "uuid/v4";
 import { Editor } from "@tinymce/tinymce-react";
-import { firestore } from "../utils/firebase";
+import { firestore, Firebase } from "../utils/firebase";
 import Store from "../Store/Store";
 interface Props {}
 
@@ -9,6 +10,12 @@ const CreateArticle: React.FC<Props> = () => {
   const [data, setData] = useState<object | any>({});
   const [content, setContent] = useState<string | any>(null);
   const [message, setMessage] = useState<string | any>(null);
+  const [image, setImage] = useState<string | any>(null);
+  const [previewImage, setimage] = useState<string | any>();
+  const handleImageChange = (e: any) => {
+    setimage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0]);
+  };
   const handleEditorChange = (e: any) => {
     setContent(e.target.getContent());
   };
@@ -19,24 +26,45 @@ const CreateArticle: React.FC<Props> = () => {
     });
   };
   const publish = async () => {
-    firestore
-      .collection("articles")
-      .doc()
-      .set({
-        title: data.title,
-        description: data.description,
-        content: content,
-        author: state.user,
-        authorId: state.uid,
-        date: new Date()
-      })
-      .then(function() {
-        console.log("Document successfully written!");
-      })
-      .catch(function(error) {
-        console.error("Error writing document: ", error);
-      });
+    const imageId = uuidv4();
+    try {
+      await Firebase.storage()
+        .ref()
+        .child(`articleImages/${imageId}`)
+        .put(image);
+
+      const url = await Firebase.storage()
+        .ref()
+        .child(`articleImages/${imageId}`)
+        .getDownloadURL();
+
+      firestore
+        .collection("articles")
+        .doc()
+        .set({
+          image: url,
+          Id: uuidv4(),
+          title: data.title,
+          description: data.description,
+          content: content,
+          author: state.user,
+          authorId: state.uid,
+          date: new Date()
+        })
+        .then(function() {
+          setMessage("Published");
+        })
+        .catch(function(error) {
+          console.error("Error writing document: ", error);
+        });
+
+      setContent(null);
+      setData(null);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   useEffect(() => {
     const clearMessage = setTimeout(() => {
       setMessage(null);
@@ -47,6 +75,20 @@ const CreateArticle: React.FC<Props> = () => {
   }, [message]);
   return (
     <div>
+      <div>
+        {previewImage ? (
+          <img
+            className="article-banner"
+            src={previewImage}
+            alt="previewImage"
+          />
+        ) : null}
+      </div>
+      <div>
+        <div></div>
+        <label htmlFor="title">Article Banner</label> <br />
+        <input onChange={handleImageChange} type="file" name="image" required />
+      </div>
       <div>
         <label htmlFor="title">Title</label> <br />
         <input
@@ -94,6 +136,7 @@ const CreateArticle: React.FC<Props> = () => {
       >
         Publish
       </button>
+      <p>{message}</p>
     </div>
   );
 };

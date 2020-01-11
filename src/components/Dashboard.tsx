@@ -4,6 +4,7 @@ import Store from "../Store/Store";
 import { Redirect } from "react-router-dom";
 import Profile from "./Profile";
 import CreateArticle from "./CreateArticle";
+import UserArticles from "./UserArticles";
 interface Props {}
 
 const Dashboard: React.FC<Props> = () => {
@@ -25,6 +26,8 @@ const Dashboard: React.FC<Props> = () => {
         return <Profile />;
       case "createArticle":
         return <CreateArticle />;
+      case "articles":
+        return <UserArticles />;
       default:
         return notFound();
     }
@@ -34,7 +37,7 @@ const Dashboard: React.FC<Props> = () => {
   return (
     <div>
       <div className="d-container">
-        <div className="mt-3">
+        <div className="mt-3 center">
           <h1 className="d-title">Dashboard</h1>
         </div>
         <div className="mt-2">
