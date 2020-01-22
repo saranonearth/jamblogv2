@@ -19,13 +19,16 @@ const Dashboard: React.FC<Props> = () => {
       </>
     );
   };
+  const changeView = (v: string): void => {
+    setView(v);
+  };
 
   const switchRender = (view: string) => {
     switch (view) {
       case "profile":
         return <Profile />;
       case "createArticle":
-        return <CreateArticle />;
+        return <CreateArticle changeView={changeView} />;
       case "articles":
         return <UserArticles />;
       default:

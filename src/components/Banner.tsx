@@ -3,7 +3,7 @@ import CSS from "csstype";
 // import BannerImg from "../images/img_1.jpg";
 const Banner: React.FC = () => {
   const imageNg: CSS.Properties = {
-    backgroundImage: `url(https://via.placeholder.com/1920x1080)`
+    backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/jamblog19.appspot.com/o/58ef8ba2905c8570965535.png?alt=media&token=f5be89ce-0fa4-4733-a05f-72ffe3f7c40a)`
   };
   return (
     <>
@@ -18,7 +18,7 @@ const Banner: React.FC = () => {
                   style={imageNg}
                 >
                   <div className="text half-to-full">
-                    <h3>Special Article of the week</h3>
+                    <h3>We need to escape from out thoughts.</h3>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                       Quidem nobis, ut dicta eaque ipsa laudantium!

@@ -1,12 +1,12 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 interface Props {}
 
 const ArticleCard: React.FC<Props> = () => {
   return (
     <>
       <div className="col-md-6">
-        <a href="blog-single.html" className="blog-entry">
+        <Link to={`/article/${"Id"}`} className="blog-entry">
           <img
             src="https://via.placeholder.com/400x200"
             alt="Image placeholder"
@@ -25,7 +25,7 @@ const ArticleCard: React.FC<Props> = () => {
             </div>
             <h2>Lorem ipsum dolor sit amet consectetur </h2>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

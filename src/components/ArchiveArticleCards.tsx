@@ -1,16 +1,16 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 interface Props {
   data: object | any;
 }
 
 const ArchiveArticleCards: React.FC<Props> = ({ data }) => {
-  const date = new Date(data.date.seconds);
+  const date = new Date(data.date.seconds * 1000);
   const formatedDate = date.getFullYear();
   return (
     <>
       <div className="col-md-4">
-        <a href="blog-single.html" className="blog-entry">
+        <Link to={`/article/${data.Id}`} className="blog-entry">
           <img src={data.image} alt="Image placeholder"></img>
           <div className="blog-content-body">
             <div className="post-meta">
@@ -19,7 +19,7 @@ const ArchiveArticleCards: React.FC<Props> = ({ data }) => {
                 <span className="ml-1">{data.author.name}</span>
               </span>
 
-              <span className="mr-2">{formatedDate} </span>
+              <span className="mr-2">{data.date.toDate().toString()} </span>
               <span className="ml-2">
                 {/* <span className="fa fa-comments"></span> 3 Likes */}
               </span>
@@ -27,7 +27,7 @@ const ArchiveArticleCards: React.FC<Props> = ({ data }) => {
             <h3>{data.title}</h3>
             <p>{data.description}</p>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

@@ -332,6 +332,7 @@ header .navbar .dropdown-menu a {
   border: 1px solid #6c757d;
   padding: 5px;
 }
+
 .article-card {
   margin-top: 20px;
   width: 90%;
@@ -345,12 +346,14 @@ header .navbar .dropdown-menu a {
   flex-direction: row;
   justify-content: flex-end;
 }
+
 .d-title {
   background-color: #161516;
   color: white;
   width: 15%;
   padding: 5px;
 }
+
 .noti-card {
   width: 90%;
   margin-top: 20px;
@@ -359,40 +362,63 @@ header .navbar .dropdown-menu a {
   color: white;
   font-size: 0.8em;
 }
+
 .article-banner {
   width: 100%;
   height: auto;
 }
+
+.align-c {
+  text-align: center !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
 .click:hover {
   cursor: pointer;
   color: #161516;
 }
+
 .click:active {
   color: #161516;
 }
+.article-container {
+  margin-bottom: 50vh;
+}
+.mt-5 {
+  margin-top: 30px;
+}
+
 @media (max-width: 800px) {
   .noti-card {
     width: 100%;
   }
+
   .article-card {
     width: 100%;
   }
+
   .util-item {
     font-size: 0.85em;
   }
+
   .a-title {
     font-size: 1em;
   }
+
   .a-desc {
     font-size: 0.8em;
     margin-bottom: 0;
   }
+
   .articles-d {
     margin-top: 30px;
   }
+
   .notifications {
     margin-top: 50px;
   }
+
   .d-top-bar {
     width: 100% !important;
   }
@@ -622,7 +648,7 @@ header .navbar .dropdown-menu a {
 }
 
 .site-section {
-  padding: 7em 0;
+  padding: 3em 0;
 }
 
 .site-section.py-md {
@@ -941,8 +967,8 @@ textarea.form-control {
 .btn.btn-primary:hover,
 .btn.btn-primary:active,
 .btn.btn-primary:focus {
-  border-color: #2a292c;
-  background: #161516;
+  border-color: #2a292c !important;
+  background: #161516 !important;
 }
 
 .btn.btn-sm {
@@ -2173,4 +2199,10 @@ blockquote p {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px;
   }
+}
+.btn-primary {
+  background: 161516 !important;
+}
+.p0 {
+  padding-bottom: 0 !important;
 }

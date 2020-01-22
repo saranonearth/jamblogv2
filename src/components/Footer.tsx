@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { Link } from "react-router-dom";
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
@@ -12,7 +12,7 @@ export default function App(props: IAppProps) {
               <h3>About Us</h3>
               <p className="mb-4">
                 <img
-                  src="https://via.placeholder.com/400x200"
+                  src="https://scontent.fdel29-1.fna.fbcdn.net/v/t1.0-9/56790817_822034391465277_8128112783184101376_o.jpg?_nc_cat=109&_nc_oc=AQl0fNvIG92ySGMH7cm_2_b55zMuiedGGy2KaRQrug3ay3WgAfG7A25ryPpJuWvxnqs&_nc_ht=scontent.fdel29-1.fna&oh=2d7af0ae28b0d41ff57be2fa3de7029e&oe=5EA19DCE"
                   alt="Image placeholder"
                   className="img-fluid"
                 />
@@ -21,7 +21,7 @@ export default function App(props: IAppProps) {
               <p>
                 Lorem ipsum dolor sit amet sa ksal sk sa, consectetur
                 adipisicing elit. Ipsa harum inventore reiciendis.{" "}
-                <a href="#">Read More</a>
+                <Link to="/about">Read More</Link>
               </p>
             </div>
             <div className="col-md-6 ml-auto">

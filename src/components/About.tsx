@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Props {}
 
 const About: React.FC<Props> = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="container">

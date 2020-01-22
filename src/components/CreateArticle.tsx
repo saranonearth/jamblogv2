@@ -3,9 +3,12 @@ import uuidv4 from "uuid/v4";
 import { Editor } from "@tinymce/tinymce-react";
 import { firestore, Firebase } from "../utils/firebase";
 import Store from "../Store/Store";
-interface Props {}
 
-const CreateArticle: React.FC<Props> = () => {
+interface Props {
+  changeView: (v: any) => void;
+}
+
+const CreateArticle: React.FC<Props> = props => {
   const { state, dispatch } = useContext(Store);
   const [data, setData] = useState<object | any>({});
   const [content, setContent] = useState<string | any>(null);
@@ -28,6 +31,7 @@ const CreateArticle: React.FC<Props> = () => {
   const publish = async () => {
     const imageId = uuidv4();
     try {
+      setMessage("Please wait... Publishing");
       await Firebase.storage()
         .ref()
         .child(`articleImages/${imageId}`)
@@ -53,6 +57,7 @@ const CreateArticle: React.FC<Props> = () => {
         })
         .then(function() {
           setMessage("Published");
+          props.changeView("articles");
         })
         .catch(function(error) {
           console.error("Error writing document: ", error);

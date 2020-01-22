@@ -12,6 +12,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Dashboard from "./components/Dashboard";
 import Onboard from "./components/Onboard";
+import Article from "./components/Article";
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: React.FC = () => {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/onboard" component={Onboard} />
+          <Route exact path="/article/:id" component={Article} />
         </Switch>
         <Footer />
       </StoreProvider>

@@ -64,10 +64,15 @@ const Archive: React.FC<Props> = () => {
         <div className="col-md-12 col-lg-12 main-content">
           <div className="row">
             {Gstate.loading ? (
-              <p>Loading</p>
+              <div className="align-c">
+                <div>
+                  {" "}
+                  <p>Loading</p>
+                </div>
+              </div>
             ) : (
               Gstate.articles.map(article => (
-                <ArchiveArticleCards data={article} />
+                <ArchiveArticleCards data={article} key={article.Id} />
               ))
             )}
           </div>

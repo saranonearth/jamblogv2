@@ -25,7 +25,7 @@ const Header: React.FC = () => {
                 <span className="burger-lines"></span>
               </a>
               <h1 className="site-logo">
-                <a href="index.html">Just Another Magazine</a>
+                <Link to="/">Just Another Magazine</Link>
               </h1>
             </div>
           </div>
