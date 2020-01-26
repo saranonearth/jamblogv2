@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { firestore } from "../utils/firebase";
 import ReactHtmlParser from "react-html-parser";
+import moment from "moment";
 interface Props extends RouteComponentProps<any> {}
 interface state {
   loading: boolean;
@@ -59,7 +60,9 @@ const Article: React.FC<Props> = props => {
                         />{" "}
                         {state.article.author.name}
                       </span>
-                      <span className="mr-2">March 15, 2018 </span>
+                      <span className="mr-2">
+                        {moment(state.article.date.toDate()).format("llll")}
+                      </span>
                       <span className="ml-2"></span>
                     </div>
                     <h1 className="mb-4">{state.article.title}</h1>
@@ -85,7 +88,10 @@ const Article: React.FC<Props> = props => {
                           <h2> {state.article.author.name}</h2>
                           <p>{state.article.author.bio}</p>
                           <p>
-                            <a href="#" className=" btn-primary btn-sm rounded">
+                            <a
+                              href="#"
+                              className="btn btn-primary btn-sm rounded color v mt-3"
+                            >
                               More.
                             </a>
                           </p>

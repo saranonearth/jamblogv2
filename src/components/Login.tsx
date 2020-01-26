@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { auth, firestore } from "../utils/firebase";
 import Store from "../Store/Store";
@@ -14,7 +14,7 @@ type FormData = {
 const Login: React.FC<Props> = ({ history }) => {
   const { handleSubmit, register } = useForm<FormData>();
   const { state, dispatch } = useContext(Store);
-
+  const [message, setMsg] = useState();
   const onSubmit = handleSubmit(async ({ email, password }) => {
     try {
       const res = await auth.signInWithEmailAndPassword(email, password);
@@ -40,9 +40,12 @@ const Login: React.FC<Props> = ({ history }) => {
       });
     } catch (error) {
       console.log(error);
+      if (error.code === "auth/user-not-found") {
+        return setMsg("Invalid Credentials");
+      }
     }
   });
-  console.log(state);
+
   if (state.isAuth) return <Redirect to="/dashboard" />;
   return (
     <div>
@@ -76,6 +79,7 @@ const Login: React.FC<Props> = ({ history }) => {
               <button className="btn btn-primary btn-sm rounded color mt-3">
                 Login
               </button>
+              {message && <p>{message}</p>}
             </div>
           </form>
         </div>

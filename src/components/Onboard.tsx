@@ -98,10 +98,10 @@ const Onboard: React.FC<Props> = props => {
             <label htmlFor="bio">About you</label>
             <br />
             <textarea
-              // minLength={200}
               name="bio"
               placeholder="I like reading books and binge watching tv series."
               ref={register}
+              minLength={200}
               required
             />
           </div>

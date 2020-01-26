@@ -6,6 +6,9 @@ import LatestPosts from "./LatestPosts";
 
 const Home: React.FC = () => {
   const { state, dispatch } = React.useContext(Store);
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   console.log(state, dispatch);
   console.log(auth);
   return (

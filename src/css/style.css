@@ -216,9 +216,24 @@ header .navbar .dropdown-menu a {
   width: 30%;
 }
 
+.cf {
+  margin-top: -30px;
+  color: #575757;
+}
+
 @media (max-width: 991.98px) {
   .site-logo a {
     font-size: 40px;
+
+  }
+
+  .site-logo {
+    line-height: 0.9;
+  }
+
+  header {
+    margin-bottom: 30px;
+
   }
 
   .no-mobile {
@@ -256,12 +271,12 @@ header .navbar .dropdown-menu a {
   text-align: right;
 }
 
-.navbar .container > div {
+.navbar .container>div {
   border-bottom: 1px solid #e6e6e6;
 }
 
 @media (max-width: 767.98px) {
-  .navbar .container > div {
+  .navbar .container>div {
     border-bottom: none;
   }
 }
@@ -315,7 +330,7 @@ header .navbar .dropdown-menu a {
   border: #6c757d 1px solid;
 }
 
-.d-top-bar > div {
+.d-top-bar>div {
   margin-right: 20px;
 }
 
@@ -382,9 +397,11 @@ header .navbar .dropdown-menu a {
 .click:active {
   color: #161516;
 }
+
 .article-container {
   margin-bottom: 50vh;
 }
+
 .mt-5 {
   margin-top: 30px;
 }
@@ -581,7 +598,7 @@ header .navbar .dropdown-menu a {
   font-weight: 300;
 }
 
-.site-hero > .container {
+.site-hero>.container {
   position: relative;
   z-index: 2;
 }
@@ -668,6 +685,7 @@ header .navbar .dropdown-menu a {
 }
 
 @media (min-width: 576px) {
+
   .school-features,
   .school-instructors {
     width: 100%;
@@ -679,6 +697,7 @@ header .navbar .dropdown-menu a {
 }
 
 @media (min-width: 576px) {
+
   .school-features .inner,
   .school-instructors .inner {
     display: -webkit-box;
@@ -707,6 +726,7 @@ header .navbar .dropdown-menu a {
 }
 
 @media (min-width: 576px) {
+
   .school-features .feature,
   .school-features .instructor,
   .school-instructors .feature,
@@ -724,6 +744,7 @@ header .navbar .dropdown-menu a {
 }
 
 @media (min-width: 768px) {
+
   .school-features .feature,
   .school-features .instructor,
   .school-instructors .feature,
@@ -741,6 +762,7 @@ header .navbar .dropdown-menu a {
 }
 
 @media (min-width: 992px) {
+
   .school-features .feature,
   .school-features .instructor,
   .school-instructors .feature,
@@ -784,10 +806,10 @@ header .navbar .dropdown-menu a {
   margin: 0 auto;
 }
 
-.school-features .feature .icon > span:before,
-.school-features .instructor .icon > span:before,
-.school-instructors .feature .icon > span:before,
-.school-instructors .instructor .icon > span:before {
+.school-features .feature .icon>span:before,
+.school-features .instructor .icon>span:before,
+.school-instructors .feature .icon>span:before,
+.school-instructors .instructor .icon>span:before {
   font-size: 50px;
   margin-left: 0;
   color: #fff;
@@ -804,6 +826,7 @@ header .navbar .dropdown-menu a {
 }
 
 @media (min-width: 992px) {
+
   .school-features.text-dark .feature,
   .school-instructors.text-dark .feature {
     border-right: 1px solid #e6e6e6;
@@ -833,8 +856,8 @@ header .navbar .dropdown-menu a {
   margin-bottom: 0;
 }
 
-.school-features.text-dark .feature .icon > span:before,
-.school-instructors.text-dark .feature .icon > span:before {
+.school-features.text-dark .feature .icon>span:before,
+.school-instructors.text-dark .feature .icon>span:before {
   font-size: 50px;
   margin-left: 0;
   color: #6610f2;
@@ -1353,7 +1376,7 @@ textarea.form-control {
   color: #fff;
 }
 
-.breadcrumb-custom li.breadcrumb-item + .breadcrumb-item:before {
+.breadcrumb-custom li.breadcrumb-item+.breadcrumb-item:before {
   content: "/";
   color: rgba(255, 255, 255, 0.3);
 }
@@ -1613,7 +1636,7 @@ textarea.form-control {
   text-transform: uppercase;
 }
 
-.media-custom > a {
+.media-custom>a {
   position: relative;
   overflow: hidden;
   display: block;
@@ -1818,6 +1841,7 @@ textarea.form-control {
 }
 
 @media (max-width: 767.98px) {
+
   .post-entry-horzontal a .image,
   .post-entry-horzontal a .text {
     display: block;
@@ -2047,7 +2071,7 @@ blockquote p {
   color: #fff;
 }
 
-.site-footer .footer-social li a > span {
+.site-footer .footer-social li a>span {
   width: 30px;
 }
 
@@ -2200,9 +2224,33 @@ blockquote p {
     stroke-dashoffset: -136px;
   }
 }
+
 .btn-primary {
   background: 161516 !important;
 }
+
 .p0 {
   padding-bottom: 0 !important;
+}
+
+.articleImg {
+  width: 400px;
+  height: 200px;
+}
+
+.btn-primary {
+  background: #262626;
+}
+
+.btn-primary:hover {
+  background: #161516;
+}
+
+.btn-primary:active {
+  background: #262626;
+  border: none;
+}
+
+.v {
+  padding: 3px 9px;
 }
