@@ -23,7 +23,7 @@ const UserArticles: React.FC<Props> = ({ history }) => {
       let Notifications: Array<object> = [];
       await firestore
         .collection("articles")
-        .where("authorId", "==", `${state.uid}`)
+        .where("authorId", "==", `${state.user.Id}`)
         .get()
         .then(data =>
           data.docs.forEach(doc => {
