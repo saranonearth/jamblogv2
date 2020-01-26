@@ -13,6 +13,8 @@ import Contact from "./components/Contact";
 import Dashboard from "./components/Dashboard";
 import Onboard from "./components/Onboard";
 import Article from "./components/Article";
+import ProfileAuthor from "./components/ProfileAuthor";
+import MainArticle from "./components/MainArticle";
 
 const App: React.FC = () => {
   return (
@@ -23,12 +25,14 @@ const App: React.FC = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/archive" component={Archive} />
+          <Route exact path="/editorspick" component={MainArticle} />
           <Route exact path="/contributors" component={Contributors} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/onboard" component={Onboard} />
           <Route exact path="/article/:id" component={Article} />
+          <Route exact path="/profile/:id" component={ProfileAuthor} />
         </Switch>
         <Footer />
       </StoreProvider>

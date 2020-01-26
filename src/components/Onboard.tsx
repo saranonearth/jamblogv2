@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Firebase, firestore } from "../utils/firebase";
 import Store from "../Store/Store";
 import { Redirect, RouteComponentProps } from "react-router-dom";
-
+import uuidv4 from "uuid/v4";
 interface Props extends RouteComponentProps {}
 
 type FormData = {
@@ -39,7 +39,8 @@ const Onboard: React.FC<Props> = props => {
           image: url,
           bio: data.bio,
           firstTime: false,
-          articleCount: 0
+          articleCount: 0,
+          Id: uuidv4()
         });
 
       dispatch({

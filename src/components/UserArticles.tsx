@@ -10,7 +10,7 @@ interface state {
 }
 
 const UserArticles: React.FC<Props> = ({ history }) => {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const [Gstate, setState] = useState<state>({
     articles: [],
     notifications: [],
@@ -49,7 +49,7 @@ const UserArticles: React.FC<Props> = ({ history }) => {
     fetchNotiAndArti();
   }, []);
   console.log(Gstate);
-  const articleDelete = (id: string) => {
+  const articleDelete = (id: string, aId: string) => {
     firestore
       .collection("articles")
       .where("Id", "==", `${id}`)
@@ -58,11 +58,21 @@ const UserArticles: React.FC<Props> = ({ history }) => {
         article.forEach(doc => {
           doc.ref.delete();
         });
-
         setState({
           ...Gstate,
           articles: Gstate.articles.filter(e => e.Id !== id)
         });
+      })
+      .then(() => {
+        dispatch({
+          type: "REDUCE_COUNT"
+        });
+        return firestore
+          .collection("users")
+          .doc(aId)
+          .update({
+            articleCount: state.user.articleCount - 1
+          });
       })
       .catch(error => {
         console.log(error);
@@ -88,7 +98,7 @@ const UserArticles: React.FC<Props> = ({ history }) => {
                       <div>&nbsp;&nbsp;</div>
                       <div
                         className="click"
-                        onClick={() => articleDelete(d.Id)}
+                        onClick={() => articleDelete(d.Id, d.author.authorId)}
                       >
                         Delete
                       </div>

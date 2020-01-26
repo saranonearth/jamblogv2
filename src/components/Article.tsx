@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { firestore } from "../utils/firebase";
 import ReactHtmlParser from "react-html-parser";
 import moment from "moment";
+import { Link } from "react-router-dom";
 interface Props extends RouteComponentProps<any> {}
 interface state {
   loading: boolean;
@@ -16,7 +17,8 @@ const Article: React.FC<Props> = props => {
   });
   useEffect(() => {
     window.scrollTo(0, 0);
-
+  }, []);
+  useEffect(() => {
     const getArticle = async () => {
       firestore
         .collection("articles")
@@ -88,12 +90,12 @@ const Article: React.FC<Props> = props => {
                           <h2> {state.article.author.name}</h2>
                           <p>{state.article.author.bio}</p>
                           <p>
-                            <a
-                              href="#"
+                            <Link
+                              to={`/profile/${state.article.authorId}`}
                               className="btn btn-primary btn-sm rounded color v mt-3"
                             >
                               More.
-                            </a>
+                            </Link>
                           </p>
                           {/* <p className="social">
                             <a href="#" className="p-2">

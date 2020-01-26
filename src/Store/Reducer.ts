@@ -21,6 +21,14 @@ type Action =
   | {
       type: "EDIT_PROFILE";
       payload: any | { image: string; name: string; bio: string };
+    }
+  | {
+      type: "ADD_COUNT";
+      payload: undefined;
+    }
+  | {
+      type: "REDUCE_COUNT";
+      payload: undefined;
     };
 
 const Reducer = (state: IStore, action: Action): IStore => {
@@ -56,6 +64,22 @@ const Reducer = (state: IStore, action: Action): IStore => {
           name: payload.name,
           image: payload.image,
           bio: payload.bio
+        }
+      };
+    case "ADD_COUNT":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          articleCount: state.user.articleCount + 1
+        }
+      };
+    case "REDUCE_COUNT":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          articleCount: state.user.articleCount - 1
         }
       };
     default:

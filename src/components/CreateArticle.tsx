@@ -52,12 +52,23 @@ const CreateArticle: React.FC<Props> = props => {
           description: data.description,
           content: content,
           author: state.user,
-          authorId: state.uid,
+          authorId: state.user.Id,
           date: new Date()
         })
         .then(function() {
           setMessage("Published");
           props.changeView("articles");
+        })
+        .then(() => {
+          dispatch({
+            type: "ADD_COUNT"
+          });
+          return firestore
+            .collection("users")
+            .doc(state.uid)
+            .update({
+              articleCount: state.user.articleCount + 1
+            });
         })
         .catch(function(error) {
           console.error("Error writing document: ", error);
@@ -119,7 +130,7 @@ const CreateArticle: React.FC<Props> = props => {
 
         That’s why I say one of the most valuable traits is persistence.”
     
-        ― Octavia E. Butler</blockquote>"
+        ― Octavia E. Butle</blockquote>"
         init={{
           height: 600,
           menubar: true,

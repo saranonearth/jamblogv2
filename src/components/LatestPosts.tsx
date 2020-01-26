@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase";
 interface Props {}
 interface state {
-  articles: Array<object>;
+  articles: Array<object | any>;
+  leaderboard: Array<object | any>;
   loading: boolean;
+  lbloading: boolean;
 }
 const LatestPosts: React.FC<Props> = () => {
   const [state, setState] = React.useState<state>({
     articles: [],
-    loading: true
+    leaderboard: [],
+    loading: false,
+    lbloading: true
   });
   React.useEffect(() => {
     firestore
@@ -24,11 +28,25 @@ const LatestPosts: React.FC<Props> = () => {
         res.forEach(d => {
           temp.push(d.data());
         });
-        setState({
-          ...state,
-          articles: temp,
-          loading: false
-        });
+        firestore
+          .collection("users")
+          .orderBy("articleCount", "desc")
+          .limit(5)
+          .get()
+          .then(res => {
+            let lb: Array<object> = [];
+
+            res.forEach(d => {
+              lb.push(d.data());
+            });
+            setState({
+              ...state,
+              leaderboard: lb,
+              lbloading: false,
+              articles: temp,
+              loading: false
+            });
+          });
       });
   }, []);
 
@@ -70,6 +88,30 @@ const LatestPosts: React.FC<Props> = () => {
 
             <div className="col-md-12 col-lg-4 sidebar">
               <div className="sidebar-box">
+                <h3 className="heading">Leaderboard</h3>
+                <ul className="categories">
+                  {state.lbloading ? (
+                    <p>Loading</p>
+                  ) : state.leaderboard.length > 0 ? (
+                    state.leaderboard.map(e => (
+                      <li key={e.Id}>
+                        <Link to={`/profile/${e.Id}`}>
+                          <img
+                            className="img-lb circle"
+                            src={e.image}
+                            alt={e.name}
+                          />{" "}
+                          {e.name}
+                          <span>{e.articleCount} Articles</span>
+                        </Link>
+                      </li>
+                    ))
+                  ) : (
+                    <p>None</p>
+                  )}
+                </ul>
+              </div>
+              <div className="sidebar-box">
                 <div className="bio text-center">
                   <div>
                     <h2>About JAM</h2>
@@ -90,22 +132,6 @@ const LatestPosts: React.FC<Props> = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="sidebar-box">
-                <h3 className="heading">Leaderboard</h3>
-                <ul className="categories">
-                  <li>
-                    <a href="#">
-                      <img
-                        src="https://via.placeholder.com/30"
-                        className="circle"
-                        alt=""
-                      />{" "}
-                      Person 1 <span>12 ❤</span>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

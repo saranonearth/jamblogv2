@@ -50,7 +50,7 @@ export default function App(props: IAppProps) {
           </div>
           <div className="row">
             <div className="col-md-12 text-center">
-              <p className="small">Made with ❤️ by Just Another Magazine</p>
+              <p className="small">Made with ❤️ by gawds</p>
             </div>
           </div>
         </div>
