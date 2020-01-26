@@ -28,7 +28,7 @@ const Banner: React.FC = () => {
   }, []);
 
   const imageNg: CSS.Properties = {
-    backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/jamblog19.appspot.com/o/58ef8ba2905c8570965535.png?alt=media&token=f5be89ce-0fa4-4733-a05f-72ffe3f7c40a)`
+    backgroundImage: `url(${state.banner && state.banner.image})`
   };
   return (
     <>
